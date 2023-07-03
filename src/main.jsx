@@ -15,31 +15,35 @@ import theme from "./app/theme";
 import Root from "./route/Root";
 import ErrorPage from "./route/ErrorPage";
 import RSA from "./route/RSA";
+import { CssBaseline } from "@mui/material";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        errorElement: <ErrorPage />,
-        children: [
-          {
-            index: true,
-            element: <RSA />,
-          },
-        ],
-      },
-    ],
-  },
+	{
+		path: "/IAS-Cryptography-Project",
+		element: <Root />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				errorElement: <ErrorPage />,
+				children: [
+					{
+						index: true,
+						element: <RSA />,
+					},
+				],
+			},
+		],
+	},
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </ThemeProvider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<ThemeProvider theme={theme}>
+			<Provider store={store}>
+				<CssBaseline />
+				<RouterProvider router={router} />
+				{/* <RSA /> */}
+			</Provider>
+		</ThemeProvider>
+	</React.StrictMode>
 );
