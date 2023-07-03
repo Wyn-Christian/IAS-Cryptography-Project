@@ -15,6 +15,7 @@ import theme from "./app/theme";
 import Root from "./route/Root";
 import ErrorPage from "./route/ErrorPage";
 import RSA from "./route/RSA";
+
 import { CssBaseline } from "@mui/material";
 
 const router = createBrowserRouter([
@@ -42,7 +43,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 			<Provider store={store}>
 				<CssBaseline />
 				<RouterProvider router={router} />
-				{/* <RSA /> */}
 			</Provider>
 		</ThemeProvider>
 	</React.StrictMode>

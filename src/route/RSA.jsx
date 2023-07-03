@@ -1,5 +1,3 @@
-import JSEncrypt from "jsencrypt";
-
 import { useDispatch, useSelector } from "react-redux";
 import { generateKey, rsaSelector } from "../features/rsaSlice";
 import { useEffect, useState } from "react";
@@ -18,7 +16,6 @@ import {
 	Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { MuiFileInput } from "mui-file-input";
 import InputRSA from "../components/InputRSA";
 import FileInputRSA from "../components/FileInputRSA";
 
@@ -28,11 +25,6 @@ function RSA() {
 
 	// States
 	const [keySize, setKeySize] = useState("1024");
-	const [file, setFile] = useState(null);
-	const [text, setText] = useState({
-		decrypt: "hello world!",
-		encrypt: "",
-	});
 
 	// Setup
 	useEffect(() => {
@@ -41,22 +33,6 @@ function RSA() {
 
 	const handleGenerateKey = () => {
 		dispatch(generateKey(keySize));
-	};
-	const handleFileButtonChange = (newFile) => {
-		setFile(newFile);
-	};
-
-	const handleEncryptDecryptClick = () => {
-		let crypt = new JSEncrypt();
-
-		crypt.setPrivateKey(rsa.privateKey);
-
-		// Check if the text input has value
-		if (text.decrypt) {
-			setText({ decrypt: "", encrypt: crypt.encrypt(text.decrypt) });
-		} else {
-			setText({ decrypt: crypt.decrypt(text.encrypt), encrypt: "" });
-		}
 	};
 
 	return (
@@ -70,10 +46,12 @@ function RSA() {
 				>
 					Text File encryption and decryption
 				</Typography>
-				<InputRSA />
 
+				{/* Inputs */}
+				<InputRSA />
 				<FileInputRSA />
 
+				{/* RSA Cryptosystem */}
 				<Typography variant="h3" mt={3}>
 					RSA Cryptosystem
 				</Typography>

@@ -2,7 +2,7 @@ import JSEncrypt from "jsencrypt";
 
 import { useSelector } from "react-redux";
 import { rsaSelector } from "../features/rsaSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
 	Box,
@@ -12,7 +12,6 @@ import {
 	Typography,
 	Stack,
 } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 import { MuiFileInput } from "mui-file-input";
 
 function downloadString(text, fileType, fileName) {
@@ -49,6 +48,7 @@ function FileInputRSA() {
 		crypt.setPrivateKey(rsa.privateKey);
 
 		setFile(newFile);
+		console.log(newFile.name);
 
 		let reader = new FileReader();
 		reader.addEventListener(
@@ -70,7 +70,6 @@ function FileInputRSA() {
 		crypt.setPrivateKey(rsa.privateKey);
 
 		setEncryptedFile(newFile);
-
 		let reader = new FileReader();
 		reader.addEventListener(
 			"load",
@@ -88,8 +87,17 @@ function FileInputRSA() {
 
 	const handleDownloadEncryptFile = (type) => {
 		if (type == "encrypt")
-			downloadString(text.encypted_input, "text/plain", "sample");
-		else downloadString(text.decrypted_input, "text/plain", "sample");
+			downloadString(
+				text.encypted_input,
+				"text/plain",
+				file.name.replace(".txt", "")
+			);
+		else
+			downloadString(
+				text.decrypted_input,
+				"text/plain",
+				encryptedFile.name.replace(".txt", "")
+			);
 	};
 
 	return (
