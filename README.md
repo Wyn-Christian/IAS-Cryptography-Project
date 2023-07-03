@@ -1,6 +1,7 @@
 # IAS-Cryptography-Project
 
 This **Javascript** project is created to encrypt/decrypt the content of `.txt` file.
+You can view the project [here](https://wyn-christian.github.io/IAS-Cryptography-Project/)
 
 ### Crypto Technique used:
 RSA Algorithm
